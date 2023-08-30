@@ -11,6 +11,10 @@
       url = "github:YellowOnion/wlroots/deferred-cursor-move";
       flake = false;
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = { self
@@ -18,6 +22,7 @@
             , utils
             , sway-src
             , wlroots-src
+            , flake-compat
             }:
       let
         overlay = self: super: {
