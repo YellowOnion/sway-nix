@@ -27,9 +27,11 @@
       let
         overlay = self: super: {
           sway-unwrapped = super.sway-unwrapped.overrideAttrs (a: {
+            version = "${a.version}-deferred-cursor";
             src = sway-src;
             });
           wlroots_0_16 = super.wlroots_0_16.overrideAttrs (a: {
+            version = "${a.version}-deferred-cursor";
             src = wlroots-src;
           });
         };
@@ -44,6 +46,8 @@
             packages = {
               default = pkgs.sway;
               sway = pkgs.sway;
+              sway-unwrapped = pkgs.sway-unwrapped;
+              wlroots_0_16   = pkgs.wlroots_0_16;
             };
         }))
         // {

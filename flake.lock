@@ -94,11 +94,11 @@
     "wlroots-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1693365008,
-        "narHash": "sha256-g2u4aZLA4S9pCGeDRt85tWeEO9RlVUb4W6Uh22i1aAw=",
+        "lastModified": 1696072111,
+        "narHash": "sha256-8slcgdDQLjLuZOdXidmwN+8moEekWAHGqMlrVtQaM+o=",
         "owner": "YellowOnion",
         "repo": "wlroots",
-        "rev": "a302a0f61530cf833f823d63593532c53849bccf",
+        "rev": "a90d4b3167ef8eb45a2131b35d66af3a3a031c29",
         "type": "github"
       },
       "original": {
