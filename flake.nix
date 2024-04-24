@@ -1,7 +1,7 @@
 {
   description = "sway-deferred-cursor";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "nixpkgs";
     utils.url = "github:numtide/flake-utils";
     sway-src = {
       url = "github:YellowOnion/sway/deferred-cursor-move";
@@ -25,12 +25,13 @@
             , flake-compat
             }:
       let
+        wlrVersion = "wlroots";
         overlay = self: super: {
-          sway-unwrapped = super.sway-unwrapped.overrideAttrs (a: {
+          sway-unwrapped = (super.sway-unwrapped.override {wlroots = self.wlroots;}).overrideAttrs (a: {
             version = "${a.version}-deferred-cursor";
             src = sway-src;
             });
-          wlroots_0_16 = super.wlroots_0_16.overrideAttrs (a: {
+          "${wlrVersion}" = super.${wlrVersion}.overrideAttrs (a: {
             version = "${a.version}-deferred-cursor";
             src = wlroots-src;
           });
@@ -47,7 +48,7 @@
               default = pkgs.sway;
               sway = pkgs.sway;
               sway-unwrapped = pkgs.sway-unwrapped;
-              wlroots_0_16   = pkgs.wlroots_0_16;
+              wlroots   = pkgs.${wlrVersion};
             };
         }))
         // {
