@@ -2,7 +2,6 @@
   description = "sway-deferred-cursor";
   inputs = {
     nixpkgs.url = "nixpkgs";
-    utils.url = "github:numtide/flake-utils";
     sway-src = {
       url = "github:YellowOnion/sway/deferred-cursor-move";
       flake = false;
@@ -15,43 +14,50 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+typed-systems = {
+      url = "github:YellowOnion/nix-typed-systems";
+      flake = false;
+    };
   };
 
   outputs = { self
             , nixpkgs
-            , utils
+            , typed-systems
             , sway-src
             , wlroots-src
-            , flake-compat
-            }:
-      let
-        wlrVersion = "wlroots";
-        overlay = self: super: {
-          sway-unwrapped = (super.sway-unwrapped.override {wlroots = self.wlroots;}).overrideAttrs (a: {
-            version = "${a.version}-deferred-cursor";
-            src = sway-src;
-            });
-          "${wlrVersion}" = super.${wlrVersion}.overrideAttrs (a: {
-            version = "${a.version}-deferred-cursor";
-            src = wlroots-src;
-          });
-        };
-      in
-        (utils.lib.eachDefaultSystem (system:
-          let
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays = [ overlay ];
-            };
-          in {
-            packages = {
-              default = pkgs.sway;
-              sway = pkgs.sway;
-              sway-unwrapped = pkgs.sway-unwrapped;
-              wlroots   = pkgs.${wlrVersion};
-            };
-        }))
-        // {
-          overlays.default = overlay;
-        };
+            , ...
+            }
+  :
+    let
+      inherit (import typed-systems) id genAttrsMapBy systems';
+      systems = [ systems'.x86_64-linux systems'.aarch64-linux ];
+
+      wlrVersion = "wlroots";
+      overlay = self: super: {
+        sway-unwrapped = (super.sway-unwrapped.override {wlroots = self.wlroots;}).overrideAttrs (a: {
+          version = "${a.version}-deferred-cursor";
+          src = sway-src;
+        });
+        "${wlrVersion}" = super.${wlrVersion}.overrideAttrs (a: {
+          version = "${a.version}-deferred-cursor";
+          src = wlroots-src;
+        });
+      };
+    in {
+      packages = (genAttrsMapBy id (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ overlay ];
+          };
+        in {
+          default = pkgs.sway;
+          sway = pkgs.sway;
+          sway-unwrapped = pkgs.sway-unwrapped;
+          wlroots   = pkgs.${wlrVersion};
+        }) systems id
+      );
+
+      overlays.default = overlay;
+    };
 }
