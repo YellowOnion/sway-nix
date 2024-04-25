@@ -41,11 +41,11 @@
     "sway-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1713945076,
-        "narHash": "sha256-mJMMEG/TBvi7eQUCqgo6cq37eYpe2dLB8ozRdyp8opM=",
+        "lastModified": 1714021677,
+        "narHash": "sha256-uBPtDDJg0vK58eTe2JR9/td2I1WHf59NvHKBkXwvg7U=",
         "owner": "YellowOnion",
         "repo": "sway",
-        "rev": "02328f3437f164f3fbac03f6169edc141c783686",
+        "rev": "7c95cb88328be7f3dfdbdf9eb63a11a40f3a2aae",
         "type": "github"
       },
       "original": {
