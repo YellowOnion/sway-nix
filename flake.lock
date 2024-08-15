@@ -18,14 +18,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1712439257,
-        "narHash": "sha256-aSpiNepFOMk9932HOax0XwNxbA38GOUVOiXfUVPOrck=",
-        "path": "/nix/store/j10523yhkcc34478azkgcl70yzcx6j2j-source",
-        "rev": "ff0dbd94265ac470dda06a657d5fe49de93b4599",
-        "type": "path"
+        "lastModified": 1723637854,
+        "narHash": "sha256-med8+5DSWa2UnOqtdICndjDAEjxr5D7zaIiK4pn0Q7c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c3aa7b8938b17aebd2deecf7be0636000d62a2b9",
+        "type": "github"
       },
       "original": {
         "id": "nixpkgs",
+        "rev": "c3aa7b8938b17aebd2deecf7be0636000d62a2b9",
         "type": "indirect"
       }
     },
@@ -74,11 +76,11 @@
     "wlroots-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1713952813,
-        "narHash": "sha256-C7cJNM8B/q6Xvqzb4+q94cbC96yeIbRAKdmf2UOjET0=",
+        "lastModified": 1723728562,
+        "narHash": "sha256-Tp13ikHCUITiGEzXrHpXO5tclVEjfHljGQTP6+gNk0Y=",
         "owner": "YellowOnion",
         "repo": "wlroots",
-        "rev": "a601eafb7a82f2b939899f71fb2a654428a782cf",
+        "rev": "1d5107d0dbd072cee06340803b46bb48851d3e25",
         "type": "github"
       },
       "original": {
